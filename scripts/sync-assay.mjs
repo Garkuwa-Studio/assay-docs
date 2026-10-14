@@ -122,7 +122,11 @@ async function renderDiagrams(diagrams) {
 }
 
 async function main() {
-  console.log(LOCAL ? `syncing ${source.repo} from local checkout ${LOCAL}` : `syncing ${source.repo}@${source.ref.slice(0, 7)}`);
+  console.log(
+    LOCAL
+      ? `syncing ${source.repo} from local checkout ${LOCAL}`
+      : `syncing ${source.repo}@${source.ref.slice(0, 7)}`,
+  );
   const diagrams = [];
   const pages = [];
   for (const [path, route, override] of SYNCED) {

@@ -17,9 +17,17 @@ A 7-minute narrated walkthrough, recorded on 14 October 2026. It shows:
 8. The `is_healthy` integration and the guard's reasons.
 9. Checking every link and hash, and the dependency scans.
 
-:::note[Link coming]
-The video is recorded and will be linked here once it's uploaded.
-:::
+<iframe
+  src="https://www.youtube-nocookie.com/embed/RPkFSGM0b6g"
+  title="Assay, by Garkuwa Labs: walkthrough video"
+  style="width: 100%; aspect-ratio: 16 / 9; border: 0;"
+  loading="lazy"
+  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+[Watch on YouTube](https://www.youtube.com/watch?v=RPkFSGM0b6g)
 
 Everything on screen comes from real runs on 14 October 2026; long waits
 were shortened and marked. No secret keys appear.

@@ -1,0 +1,160 @@
+---
+// Renders src/data/testnet.json (the core repo's e2e receipts, copied by
+// `pnpm sync`) and nothing else. No receipts → "Demo in progress".
+import data from "../data/testnet.json";
+
+interface Step {
+  part?: string;
+  step: string;
+  tx: string[];
+}
+interface Run {
+  file: string;
+  kind: string;
+  network: string;
+  date: string;
+  steps: Step[];
+  matches_expected?: boolean;
+  registry?: { contract: string; wasm_sha256: string };
+  contracts?: Record<string, { id: string; wasm_sha256?: string }>;
+  status?: Record<string, number | boolean>;
+  policy?: Record<string, number>;
+  final_position?: { collateral: string; debt: string };
+}
+
+const runs = (data.runs as Run[]).slice().sort((a, b) => b.date.localeCompare(a.date));
+const { repo, ref } = data.source;
+const tx = (h: string, net: string) => `https://stellar.expert/explorer/${net}/tx/${h}`;
+const contract = (id: string, net: string) =>
+  `https://stellar.expert/explorer/${net}/contract/${id}`;
+const receipt = (f: string) =>
+  `https://github.com/${repo}/blob/${ref}/docs/audit/e2e-receipts/${f}`;
+const title: Record<string, string> = {
+  "registry-demo": "Registry demo",
+  "circuit-breaker-demo": "Circuit-breaker demo",
+};
+const short = (s: string, n = 4) => (s.length > 2 * n + 1 ? `${s.slice(0, n)}…${s.slice(-n)}` : s);
+/** Step labels name contracts in backticks; show them short (the link has the full ID). */
+const label = (s: string) => s.replace(/`?(C[A-Z2-7]{55})`?/g, (_, id) => short(id));
+const tokens = (units: string) => (Number(units) / 1e7).toLocaleString("en-US");
+const contractsOf = (r: Run) =>
+  r.contracts
+    ? Object.entries(r.contracts).map(([name, c]) => ({ name, id: c.id, wasm: c.wasm_sha256 }))
+    : r.registry
+      ? [{ name: "registry", id: r.registry.contract, wasm: r.registry.wasm_sha256 }]
+      : [];
+---
+
+{runs.length === 0 ? (
+  <p>
+    <strong>Demo in progress.</strong> No testnet receipts have been published yet.
+  </p>
+) : (
+  runs.map((r) => (
+    <section class="run">
+      <h2 id={r.file.replace(/\.json$/, "")}>
+        {title[r.kind] ?? r.kind}, {r.date}
+      </h2>
+      <p>
+        Network: <code>{r.network}</code> · Receipt: <a href={receipt(r.file)}>{r.file}</a>
+        {r.matches_expected !== undefined && (
+          <>
+            {" "}
+            · Result matched the expected values:{" "}
+            <strong>{r.matches_expected ? "yes" : "no"}</strong>
+          </>
+        )}
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Contract</th>
+            <th>ID</th>
+            <th>WASM SHA-256</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contractsOf(r).map((c) => (
+            <tr>
+              <td>{c.name.replace("_", " ")}</td>
+              <td>
+                <a href={contract(c.id, r.network)} title={c.id}>
+                  <code>{short(c.id, 6)}</code>
+                </a>
+              </td>
+              <td>
+                {c.wasm ? <code title={c.wasm}>{short(c.wasm, 8)}</code> : "Stellar Asset Contract"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {r.policy && (
+        <p>
+          Policy:{" "}
+          {Object.entries(r.policy).map(([k, v], i) => (
+            <>
+              {i > 0 && ", "}
+              <code>{k}</code> {v}
+            </>
+          ))}
+        </p>
+      )}
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Transactions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {r.steps.map((s) => (
+            <tr>
+              <td>{label(s.step)}</td>
+              <td class="tx">
+                {s.tx.length === 0
+                  ? "already deployed"
+                  : s.tx.map((h, i) => (
+                      <>
+                        {i > 0 && ", "}
+                        <a href={tx(h, r.network)}>
+                          <code>{h.slice(0, 8)}…</code>
+                        </a>
+                      </>
+                    ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {r.status && (
+        <p>
+          Status read after the run:{" "}
+          {Object.entries(r.status).map(([k, v], i) => (
+            <>
+              {i > 0 && ", "}
+              <code>{k}</code> {String(v)}
+            </>
+          ))}
+        </p>
+      )}
+      {r.final_position && (
+        <p>
+          Final position: {tokens(r.final_position.collateral)} ADEMO collateral,{" "}
+          {tokens(r.final_position.debt)} DUSD debt.
+        </p>
+      )}
+    </section>
+  ))
+)}
+
+<p class="source">
+  From <code>{repo}</code> at commit <code>{ref.slice(0, 7)}</code>, copied by{" "}
+  <code>pnpm sync</code>.
+</p>
+
+<style>
+  .tx {
+    white-space: nowrap;
+  }
+</style>

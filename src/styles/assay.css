@@ -1,0 +1,152 @@
+/* Assay identity on Starlight: the board's palette (a public weights-and-
+   measures office) and type. Brass is for rules and graphics only, never
+   text. No colour implies a judgment about an issuer. */
+
+:root {
+  --sl-font: "Public Sans Variable", "Public Sans", system-ui, sans-serif;
+  --sl-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --assay-serif: "Besley Variable", "Besley", Georgia, serif;
+  --assay-brass: #c8994a;
+
+  /* Dark: touchstone. */
+  --sl-color-white: #f1ece1;
+  --sl-color-gray-1: #e9e4d8;
+  --sl-color-gray-2: #cfc9bc;
+  --sl-color-gray-3: #a9a49a;
+  --sl-color-gray-4: #6f6b63;
+  --sl-color-gray-5: #3a4247;
+  --sl-color-gray-6: #1c2125;
+  --sl-color-black: #15191c;
+
+  --sl-color-accent-low: #1f3a35;
+  --sl-color-accent: #86b9ae;
+  --sl-color-accent-high: #c4e0d9;
+
+  --sl-color-blue-low: #1f3a35;
+  --sl-color-blue: #86b9ae;
+  --sl-color-blue-high: #c4e0d9;
+  --sl-color-green-low: #1f3a35;
+  --sl-color-green: #86b9ae;
+  --sl-color-green-high: #c4e0d9;
+  --sl-color-orange-low: #3d2f18;
+  --sl-color-orange: #c8994a;
+  --sl-color-orange-high: #ecd3a6;
+  --sl-color-purple-low: #2b2f3a;
+  --sl-color-purple: #a9a49a;
+  --sl-color-purple-high: #e9e4d8;
+  --sl-color-red-low: #3d221d;
+  --sl-color-red: #d08a7c;
+  --sl-color-red-high: #f0cfc7;
+}
+
+:root[data-theme="light"] {
+  /* Light: ledger paper. */
+  --assay-brass: #a8792b;
+  --sl-color-white: #1c1f24;
+  --sl-color-gray-1: #2b2f35;
+  --sl-color-gray-2: #3d4248;
+  --sl-color-gray-3: #4e535a;
+  --sl-color-gray-4: #7a766d;
+  --sl-color-gray-5: #c9c3b6;
+  --sl-color-gray-6: #ebe6db;
+  --sl-color-gray-7: #efebe2;
+  --sl-color-black: #f4f1ea;
+
+  --sl-color-accent-low: #d7e6e1;
+  --sl-color-accent: #3f6f66;
+  --sl-color-accent-high: #2c524b;
+
+  --sl-color-blue-low: #dde9e5;
+  --sl-color-blue: #3f6f66;
+  --sl-color-blue-high: #2c524b;
+  --sl-color-green-low: #dde9e5;
+  --sl-color-green: #3f6f66;
+  --sl-color-green-high: #2c524b;
+  --sl-color-orange-low: #f1e4cb;
+  --sl-color-orange: #a8792b;
+  --sl-color-orange-high: #6b4a14;
+  --sl-color-purple-low: #ebe6db;
+  --sl-color-purple: #4e535a;
+  --sl-color-purple-high: #1c1f24;
+  --sl-color-red-low: #f3dfda;
+  --sl-color-red: #9c4636;
+  --sl-color-red-high: #6e2c20;
+}
+
+/* Headings in the board's serif. */
+.sl-markdown-content :is(h1, h2, h3, h4),
+h1#_top,
+.hero h1 {
+  font-family: var(--assay-serif);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.site-title {
+  font-family: var(--assay-serif);
+  font-weight: 600;
+}
+
+/* Figures line up. */
+.sl-markdown-content table,
+.sl-markdown-content code {
+  font-variant-numeric: tabular-nums;
+}
+
+/* A hairline in brass under the page title, like a ledger rule. */
+.content-panel:first-of-type h1#_top::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 3px;
+  margin-top: 0.75rem;
+  background: var(--assay-brass);
+}
+
+/* Long contract IDs and hashes wrap in running text instead of pushing the
+   page sideways; in tables, identifiers stay whole and the table scrolls. */
+.sl-markdown-content :is(p, li) > code {
+  overflow-wrap: anywhere;
+}
+
+/* Architecture status tags: [Built], [Demo sprint], [SCF T1/T2/T3]. */
+.tag {
+  display: inline-block;
+  font: 500 0.75rem/1.4 var(--sl-font-mono);
+  letter-spacing: 0.03em;
+  padding: 0.05rem 0.45rem;
+  border-radius: 2px;
+  border: 1px solid var(--sl-color-gray-5);
+  color: var(--sl-color-white);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.tag.built {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-accent-low);
+}
+.tag.sprint {
+  border-color: var(--sl-color-orange);
+  background: var(--sl-color-orange-low);
+}
+
+/* Diagrams rendered from the architecture (light and dark versions). */
+.diagram {
+  margin-block: 1.5rem;
+}
+.diagram img {
+  width: 100%;
+  height: auto;
+  background: #f4f1ea;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,48 @@
+---
+title: Assay docs
+description: Open proof of reserves and circuit breakers for real-world assets and stablecoins on Stellar. By Garkuwa Labs.
+template: splash
+editUrl: false
+hero:
+  tagline: Open proof of reserves and circuit breakers for real-world assets and stablecoins on Stellar. Facts, not ratings.
+  actions:
+    - text: Understand Assay
+      link: /understand/what-is-assay/
+      icon: right-arrow
+    - text: Build with Assay
+      link: /build/quickstart/
+      variant: minimal
+    - text: Open the board
+      link: https://assay.wtf/board/
+      variant: minimal
+      icon: external
+---
+
+import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+## Two ways in
+
+<CardGrid>
+  <Card title="Understand" icon="open-book">
+    Plain-language pages for anyone: what Assay checks, why it matters, how to read the board, and
+    what Assay does not do. Start with [What is Assay?](/understand/what-is-assay/)
+  </Card>
+  <Card title="Build" icon="seti:rust">
+    Precise pages for developers, issuers, attestors and lending protocols: run the demos on
+    testnet, sign a reserve report, and add one `is_healthy` call. Start with the
+    [quickstart](/build/quickstart/).
+  </Card>
+</CardGrid>
+
+## Where things stand
+
+As of 14 October 2026, the board reads **Stellar mainnet** data, and the
+contracts run on **Stellar testnet** only. They have not been audited. The
+[testnet page](/project/testnet/) lists every run, with its transactions.
+
+<CardGrid>
+  <LinkCard title="The board" description="270 assets checked in the 2026-10-12 census." href="https://assay.wtf/board/" />
+  <LinkCard title="Circuit breaker on testnet" description="A borrow rejected on chain: undercovered, then stale." href="/build/circuit-breaker-demo/" />
+  <LinkCard title="Signed reserve reports" description="A draft standard and the tools to sign and verify." href="/build/issuers/" />
+  <LinkCard title="For lending protocols" description="Ask the guard before you accept an asset." href="/build/protocols/" />
+</CardGrid>

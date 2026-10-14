@@ -1,0 +1,11 @@
+// Static-assets-only Worker: `astro build` writes dist/, wrangler uploads it.
+// Having this file stops `wrangler deploy` from auto-configuring the project.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "assay-docs",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+  },
+}

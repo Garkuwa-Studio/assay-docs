@@ -1,0 +1,41 @@
+---
+// Starlight's footer (edit link, previous/next) plus Assay's links and
+// disclaimer, which appear on every page.
+import Default from "@astrojs/starlight/components/Footer.astro";
+---
+
+<Default>
+  <slot />
+</Default>
+<div class="assay-footer">
+  <p class="links">
+    <a href="https://assay.wtf/">Board</a>
+    {" · "}
+    <a href="https://github.com/Garkuwa-Studio/assay">Core repo</a>
+    {" · "}
+    <a href="https://github.com/Garkuwa-Studio/assay-docs">Docs repo</a>
+    {" · "}
+    <a href="https://github.com/Garkuwa-Studio">GitHub organisation</a>
+  </p>
+  <p class="disclaimer">
+    Assay, by Garkuwa Labs. The board reads Stellar mainnet; Assay's contracts run on Stellar
+    testnet and have not been audited. Figures are as stated by issuers or attestors. Assay is not
+    an audit and not investment advice. Open source under Apache-2.0.
+  </p>
+</div>
+
+<style>
+  .assay-footer {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sl-color-hairline);
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .assay-footer p {
+    margin: 0 0 0.5rem;
+  }
+  .assay-footer a {
+    color: var(--sl-color-text-accent);
+  }
+</style>

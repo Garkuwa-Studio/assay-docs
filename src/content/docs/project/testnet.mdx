@@ -1,0 +1,15 @@
+---
+title: Testnet runs
+description: Every Assay run on Stellar testnet, with contract IDs, WASM hashes and transactions, from the published receipts.
+tableOfContents: false
+---
+
+import TestnetRuns from "../../../components/TestnetRuns.astro";
+
+Every demo run writes a receipt to `docs/audit/e2e-receipts/` in the core
+repo. This page shows those receipts and nothing else. Each transaction opens
+on stellar.expert; anyone can check it.
+
+All contracts here are on **testnet** only and have not been audited.
+
+<TestnetRuns />

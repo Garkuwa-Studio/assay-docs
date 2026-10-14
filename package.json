@@ -1,0 +1,46 @@
+{
+  "name": "assay-docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Documentation site of Assay, by Garkuwa Labs",
+  "license": "Apache-2.0",
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "typecheck": "astro check",
+    "test": "vitest run",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "sync": "node scripts/sync-assay.mjs",
+    "check-chain": "node scripts/check-chain.mjs",
+    "pdf": "node scripts/pdf.mjs",
+    "lighthouse": "lhci autorun",
+    "check-dist": "node scripts/check-dist.mjs",
+    "og": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --hide-scrollbars --virtual-time-budget=3000 --window-size=1200,630 --screenshot=public/og.png \"file://$PWD/og/og.html\""
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.4",
+    "@fontsource-variable/besley": "5.3.0",
+    "@fontsource-variable/public-sans": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "astro": "7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@lhci/cli": "0.15.1",
+    "mermaid": "12.0.0",
+    "playwright-core": "1.62.1",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.1",
+    "starlight-links-validator": "0.26.0",
+    "typescript": "6.0.3",
+    "vitest": "5.0.3"
+  }
+}

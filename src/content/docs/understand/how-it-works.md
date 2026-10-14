@@ -22,6 +22,12 @@ The board at [assay.wtf](https://assay.wtf/board/) shows the result. Every
 figure links to its source, and every asset page has a link for the issuer
 to correct a mistake.
 
+Coming in T1: a daily refresh, a public API, supply at a recorded ledger,
+and the checks a lender asked for before accepting RWA collateral: issuer
+controls (clawback, authorization flags, signer thresholds), the redemption
+path, exit liquidity on the Stellar DEX and AMMs, and the validity windows of
+`collateral_address_signatures`.
+
 ## 2. The registry records signed reports
 
 Some issuers and auditors want their reports read by software. For them,
@@ -34,6 +40,10 @@ Assay has a **registry**: a smart contract on Stellar.
   report document.
 - A **supply witness** posts how many tokens actually exist, so a report
   can't understate what's owed.
+
+Coming in T2: each attestor is recorded as **independent** (an auditor,
+custodian or oracle) or as the **issuer**, so you can see who vouches for an
+asset.
 
 Anyone can read an asset's **status** from the registry. It is worked out
 when you ask, from the reports that are still fresh, and it always takes the
@@ -58,6 +68,15 @@ supply mismatch.
 What happens next is up to the protocol. In the [testnet
 demo](/build/circuit-breaker-demo/), a small lending pool rejects the borrow
 and records the reason on chain. The guard itself never moves money.
+
+## 4. A standard for the report itself
+
+The fourth part is a draft Stellar standard (SEP) that turns the reserve
+link in `stellar.toml` into a report a computer can read: reserves by type
+and custodian, liabilities, the ledger, who attests and in what role,
+fingerprints of the evidence, and a signature by a key listed in
+`stellar.toml`. Plain PDF links keep working. See
+[Signed reserve reports](/understand/reserve-reports/).
 
 ## How the pieces fit
 

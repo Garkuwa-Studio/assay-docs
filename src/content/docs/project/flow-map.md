@@ -6,7 +6,7 @@ description: The three flows through Assay, step by step, with what exists today
 Three flows run through Assay. Each step is tagged:
 <span class="tag built">Built</span> exists and has a contract ID, transaction or
 live URL; <span class="tag sprint">Demo sprint</span> exists as a demo or draft;
-<span class="tag">SCF T1/T2/T3</span> is planned for that grant tranche.
+<span class="tag">T1/T2/T3</span> is planned for that tranche; <span class="tag">After launch</span> comes after mainnet.
 
 The diagrams are the target design from the [architecture](/project/architecture/).
 
@@ -20,9 +20,12 @@ The diagrams are the target design from the [architecture](/project/architecture
 | Registry contract | <span class="tag built">Built</span> testnet ([IDs](/reference/contracts/)) |
 | Guard contract | <span class="tag built">Built</span> testnet |
 | Reserve report format | <span class="tag sprint">Demo sprint</span> draft SEP |
-| Indexer as supply witness | <span class="tag">SCF T1</span> |
-| Oracle adapters (RedStone, Chainlink) | <span class="tag">SCF T2</span> |
-| Wallets and explorers reading the registry | Planned, not yet scheduled |
+| Risk-context checks: issuer flags, redemption path, exit liquidity, collateral signatures | <span class="tag">T1</span> |
+| Public API v1, daily refresh, correction workflow | <span class="tag">T1</span> |
+| Independent vs issuer attestors; guard reasons `UNKNOWN_ASSET`, `NO_INDEPENDENT_ATTESTOR` | <span class="tag">T2</span> |
+| Indexer posting supply as witness on mainnet | <span class="tag">T3</span> |
+| Oracle adapters (RedStone, Chainlink) | <span class="tag">After launch</span> |
+| SDK for wallets and explorers to read status | <span class="tag">T2</span> |
 
 ## 1. Board check (no permission needed)
 
@@ -43,9 +46,9 @@ The diagrams are the target design from the [architecture](/project/architecture
    SHA-256 to the registry with `post_report`. <span class="tag built">Built</span> testnet
 3. The registry checks the attestor is registered and signed the call, the
    unit, the dates and the order. <span class="tag built">Built</span> testnet
-4. The `assay report sign/post` CLI commands. <span class="tag">SCF T1</span>
+4. The `assay report sign/post` CLI commands. <span class="tag">T2</span>
 5. Timelocked attestor changes; issuers claiming their asset via
-   `stellar.toml`. <span class="tag">SCF T1</span>
+   `stellar.toml`. <span class="tag">T2</span>
 
 The architecture's diagram for this flow shows the target design, in which
 the registry also checks the report's signature on chain.
@@ -57,8 +60,8 @@ the registry also checks the report's signature on chain.
 3. The guard reads `status_with` from the registry and returns `(false,
    reason)` for the first rule that fails. <span class="tag built">Built</span> testnet
 4. The pool rejects the borrow and records the reason; nothing moves. <span class="tag built">Built</span> ([demo run](/evidence/demo-run/))
-5. A scoped keeper for pools that can't change their code. <span class="tag">SCF T2</span>
-6. Pilots with real protocols and attestors. <span class="tag">SCF T2</span>
+5. A scoped keeper for pools that can't change their code. <span class="tag">After launch</span>
+6. Pilots with real protocols and attestors. <span class="tag">T2</span>
 
 ## Architecture as a PDF
 

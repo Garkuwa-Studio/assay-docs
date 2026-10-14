@@ -63,7 +63,7 @@ assay/
 ├── contracts/registry     reserve registry
 ├── contracts/guard        circuit breaker
 ├── contracts/demo-pool    TESTNET DEMO ONLY
-├── crates/assay-stellar   CLI (assay), placeholder until SCF T1
+├── crates/assay-stellar   CLI (assay), placeholder until T2
 ├── packages/sdk           @garkuwa/assay-sdk
 ├── scripts/               testnet demos, sign-report, check-links
 └── docs/                  architecture, census, testnet evidence, SEP draft

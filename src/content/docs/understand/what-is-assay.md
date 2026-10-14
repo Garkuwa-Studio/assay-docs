@@ -12,7 +12,7 @@ by real money, bonds or loans. It doesn't decide whether a token is good or
 bad. It records **what the issuer publishes about its reserves, when, and
 where it says so**, with a link to the source every time.
 
-## The three parts
+## The parts
 
 1. **The board** ([assay.wtf](https://assay.wtf/board/)). A public page for
    every Stellar asset that claims backing. It shows whether the issuer
@@ -26,6 +26,8 @@ where it says so**, with a link to the source every time.
    question: _is this asset healthy right now?_ It answers yes or no, with a
    reason. If reports are missing, out of date, or show a shortfall, the
    answer is no.
+4. **The standard.** A draft Stellar standard for reserve reports a computer
+   can read, signed by a key the issuer lists. Plain PDF links keep working.
 
 The board works on Stellar's main network today. The registry and the guard
 run on **testnet**, Stellar's practice network, while they are built and

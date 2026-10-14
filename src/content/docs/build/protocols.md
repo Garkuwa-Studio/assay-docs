@@ -75,6 +75,11 @@ returns error `InvalidPolicy` (1) when:
 | `Disagreement` | Attestors' coverage figures differ by more than `max_disagreement_bps`. |
 | `SupplyMismatch` | On-chain supply is above what a report says is owed, beyond the tolerance. |
 
+Planned for T2: `UNKNOWN_ASSET` (today an unregistered asset returns
+`NoReport`), `NO_INDEPENDENT_ATTESTOR` with a `min_independent` policy field,
+`false` on a failed registry call (today the call fails), and strict and
+lenient policy profiles. See the [roadmap](/project/roadmap/).
+
 Rules are checked in this order and the first failure is returned. Missing
 data is always unhealthy; there is no setting to change that. The exact
 arithmetic is in [Status rules](/build/status-rules/).

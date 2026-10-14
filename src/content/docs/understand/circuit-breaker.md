@@ -28,6 +28,10 @@ order and reports the **first** one that fails:
 
 If every rule passes, the answer is **healthy**.
 
+Planned for T2: an **unknown asset** reason of its own (today it reads as
+no report), and **no independent attestor**, for a policy that won't accept
+an issuer vouching for itself.
+
 ## Missing data is never healthy
 
 This is the most important rule, and it can't be switched off. If reports

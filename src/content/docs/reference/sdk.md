@@ -7,7 +7,7 @@ Source: [`packages/sdk`](https://github.com/Garkuwa-Studio/assay/tree/main/packa
 
 :::note[Not published yet]
 `@garkuwa/assay-sdk` is version `0.0.0` and is not on npm yet; publishing is
-planned for SCF tranche 1. Use it from the core repo's workspace
+planned for T2. Use it from the core repo's workspace
 (`"@garkuwa/assay-sdk": "workspace:*"`) or build it with `pnpm -r build` and
 import `packages/sdk/dist/index.js`.
 :::

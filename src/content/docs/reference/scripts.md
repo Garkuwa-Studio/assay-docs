@@ -64,5 +64,5 @@ above.
 
 The crate `assay-stellar` builds a binary called `assay`. In version 0 it has
 no commands and prints `assay 0.0.0: no commands yet`. The planned commands
-(`assay check`, `assay report sign/post`) come with SCF tranche 1; until then,
+(`assay check`, `assay report sign/post`) come in T2; until then,
 the scripts above do the same jobs.

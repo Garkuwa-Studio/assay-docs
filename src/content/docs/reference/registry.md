@@ -37,7 +37,7 @@ state reserves in the unit the asset was registered with.
 
 In v0 only the contract admin registers assets. Issuers claiming their own
 asset through `stellar.toml`, and a timelock on attestor changes, are
-planned for SCF tranche 1.
+planned for T2.
 
 ### Posting
 

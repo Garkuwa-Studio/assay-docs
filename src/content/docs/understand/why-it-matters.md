@@ -9,11 +9,19 @@ Stellar holds about **$4 billion** in tokenized real-world assets: tokens
 that stand for dollars, government bonds, loans and similar things held
 off-chain. ([Cointelegraph, citing Stellar's Dune dashboard, 29 August 2026](/evidence/stack-status/#6-reserve-verified-stablecoins).)
 
+The same source counts roughly **$438 million** in what the dashboard calls
+"reserve-verified" stablecoins issued on Stellar. What "reserve-verified"
+means there isn't published; see [stack status §6](/evidence/stack-status/#6-reserve-verified-stablecoins).
+
 Lending markets on Stellar accept only a small part of that as collateral.
 The Blend pools that take these assets held "just above **$2M**" in August
 2026 ([RedStone, 26 August 2026](/evidence/stack-status/#7-lending-markets-and-how-they-stop-new-exposure)).
 
-One reason is simple: a lender's risk team can't keep watching the backing.
+Price and NAV oracles already exist on Stellar. What's missing is
+**verifiable backing**: a lender's risk team can't keep watching it, and no
+contract can see it. A lending market listing an RWA has no on-chain signal
+for "the issuer stopped reporting", "reserves fell below supply" or "only the
+issuer vouches for this".
 
 ## What issuers publish today
 

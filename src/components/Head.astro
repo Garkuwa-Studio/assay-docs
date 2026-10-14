@@ -1,0 +1,13 @@
+---
+// Starlight's head plus preloads for the Latin fonts used on first paint, so
+// text doesn't reflow (layout shift) when they arrive after the CSS.
+import Default from "@astrojs/starlight/components/Head.astro";
+import mono from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url";
+import sans from "@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url";
+import serif from "@fontsource-variable/besley/files/besley-latin-wght-normal.woff2?url";
+---
+
+<Default />
+{[sans, mono, serif].map((href) => (
+  <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+))}

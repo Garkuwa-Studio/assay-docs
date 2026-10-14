@@ -42,7 +42,7 @@ When a figure isn't published in a form a computer can read, the board shows
 | Registry, guard, demo pool | Testnet only. Not audited. |
 | Reserve report format | Draft, not yet a Stellar standard |
 | `assay` command-line tool | Placeholder; the scripts in the core repo do the work today |
-| Attestor timelock, issuer claims | Planned for SCF tranche 1 |
+| Attestor timelock, issuer claims, independent vs issuer attestors | Planned for T2 |
 
 The demo pool exists only to show the guard. It has no interest, no
 liquidation and fixed prices, and must never be deployed to mainnet.

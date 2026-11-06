@@ -56,4 +56,6 @@ fixed and logged in public with their date: see [corrections](/project/correctio
 ### Who builds Assay?
 
 Garkuwa Labs. Everything is open source under Apache-2.0 on
-[GitHub](https://github.com/Garkuwa-Studio).
+[GitHub](https://github.com/Garkuwa-Studio). For news, follow Assay on
+[X](https://x.com/assaydotwtf) and
+[LinkedIn](https://www.linkedin.com/company/assaydotwtf/).

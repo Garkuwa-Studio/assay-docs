@@ -21,7 +21,11 @@ export default defineConfig({
       social: [
         { icon: "github", label: "GitHub", href: "https://github.com/Garkuwa-Studio/assay" },
         { icon: "x.com", label: "X", href: "https://x.com/assaydotwtf" },
-        { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/assaydotwtf/" },
+        {
+          icon: "linkedin",
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/company/assaydotwtf/",
+        },
       ],
       editLink: { baseUrl: "https://github.com/Garkuwa-Studio/assay-docs/edit/main/" },
       customCss: [

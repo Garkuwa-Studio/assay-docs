@@ -20,6 +20,12 @@ export default defineConfig({
       favicon: "/favicon.svg",
       social: [
         { icon: "github", label: "GitHub", href: "https://github.com/Garkuwa-Studio/assay" },
+        { icon: "x.com", label: "X", href: "https://x.com/assaydotwtf" },
+        {
+          icon: "linkedin",
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/company/assaydotwtf/",
+        },
       ],
       editLink: { baseUrl: "https://github.com/Garkuwa-Studio/assay-docs/edit/main/" },
       customCss: [
@@ -32,6 +38,7 @@ export default defineConfig({
       head: [
         { tag: "meta", attrs: { property: "og:image", content: `${site}/og.png` } },
         { tag: "meta", attrs: { name: "twitter:card", content: "summary_large_image" } },
+        { tag: "meta", attrs: { name: "twitter:site", content: "@assaydotwtf" } },
       ],
       components: {
         Footer: "./src/components/Footer.astro",

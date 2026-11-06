@@ -8,4 +8,7 @@
     "directory": "./dist",
     "not_found_handling": "404-page",
   },
+  // Branch builds run `wrangler preview`, which needs this block (it can be
+  // empty; assets and compatibility settings stay at the top level).
+  "previews": {},
 }

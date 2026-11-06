@@ -1,6 +1,8 @@
 // Checks every stellar.expert transaction and contract this site links to:
 // transactions must return SUCCESS from Stellar RPC on their network, and
-// contracts must exist (stellar.expert API). Reads src/content/docs and
+// contracts must exist (stellar.expert API). RPC keeps only about a week of
+// transactions, so an older one (NOT_FOUND) is checked on Horizon, which
+// keeps full history and must report it as successful. Reads src/content/docs and
 // src/data/testnet.json. Read-only; sends nothing.
 //
 //   pnpm check-chain
@@ -8,6 +10,15 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const RPC = { testnet: "https://soroban-testnet.stellar.org" };
+const HORIZON = { testnet: "https://horizon-testnet.stellar.org" };
+
+// Horizon's verdict for a transaction RPC no longer holds.
+async function horizonStatus(net, hash) {
+  const res = await fetch(`${HORIZON[net]}/transactions/${hash}`);
+  if (res.status === 404) return "NOT_FOUND (RPC and Horizon)";
+  if (!res.ok) return `Horizon HTTP ${res.status}`;
+  return (await res.json()).successful === true ? "SUCCESS" : "FAILED (Horizon)";
+}
 const TX = /stellar\.expert\/explorer\/(testnet|public)\/tx\/([0-9a-f]{64})/g;
 const CONTRACT = /stellar\.expert\/explorer\/(testnet|public)\/contract\/(C[A-Z2-7]{55})/g;
 
@@ -44,7 +55,8 @@ for (const [hash, net] of txs) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getTransaction", params: { hash } }),
   });
-  const status = (await res.json()).result?.status;
+  let status = (await res.json()).result?.status;
+  if (status === "NOT_FOUND" && HORIZON[net]) status = await horizonStatus(net, hash);
   if (status !== "SUCCESS") failures.push(`tx ${hash} (${net}): ${status ?? "no result"}`);
 }
 for (const [id, net] of contracts) {
